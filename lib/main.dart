@@ -46,25 +46,66 @@ class FirstScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: Column(children: <Widget>[
-          // ElevatedButton(
-          //   onPressed: () {
-          //     Navigator.pop(context);
-          //   },
-          //   child: const Text('Go to First Screen'),
-          // ),
-          Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: const Text(
-                'Go to First Screen',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color.fromARGB(255, 20, 20, 20),
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              // ElevatedButton(
+              //   onPressed: () {
+              //     Navigator.pop(context);
+              //   },
+              //   child: const Text('Go to First Screen'),
+              // ),
+              Container(
+                  margin: const EdgeInsets.only(top: 16.0),
+                  child: const Text(
+                    'Go to First Screen',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 20, 20, 20),
+                    ),
+                  )),
+
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: <Widget>[
+                    Column(
+                      children: const <Widget>[
+                        Icon(Icons.calendar_today),
+                        SizedBox(
+                          // Use of SizedBox
+                          height: 8.0,
+                        ),
+                        Text('Calendar'),
+                      ],
+                    ),
+                    Column(
+                      children: const <Widget>[
+                        Icon(Icons.calendar_today),
+                        SizedBox(
+                          // Use of SizedBox
+                          height: 8.0,
+                        ),
+                        Text('Calendar'),
+                      ],
+                    ),
+                    Column(
+                      children: const <Widget>[
+                        Icon(Icons.calendar_today),
+                        SizedBox(
+                          // Use of SizedBox
+                          height: 8.0,
+                        ),
+                        Text('Calendar'),
+                      ],
+                    ),
+                  ],
                 ),
-              )),
-        ]),
+              )
+            ]),
         // child: ElevatedButton(
         //   onPressed: () {
         //     Navigator.push(context);
