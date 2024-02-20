@@ -28,6 +28,7 @@ class FirstScreen extends StatelessWidget {
         ),
       ),
       body: SafeArea(
+          child: SingleChildScrollView(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -93,21 +94,24 @@ class FirstScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   'Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi. Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi. Wisata ini merupaka Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi.',
-                  textAlign: TextAlign.center,
+                  textAlign: TextAlign.start,
                   style: TextStyle(
                     fontSize: 16.0,
                     color: Color.fromARGB(255, 20, 20, 20),
                   ),
                 ),
-              )
+              ),
+              Image.network(
+                  'https://media-cdn.tripadvisor.com/media/photo-s/0d/7c/59/70/farmhouse-lembang.jpg')
             ]),
-        // child: ElevatedButton(
-        //   onPressed: () {
-        //     Navigator.push(context);
-        //   },
-        //   child: const Text('Go to Second Screen'),
-        // ),
-      ),
+      )
+          // child: ElevatedButton(
+          //   onPressed: () {
+          //     Navigator.push(context);
+          //   },
+          //   child: const Text('Go to Second Screen'),
+          // ),
+          ),
     );
   }
 }

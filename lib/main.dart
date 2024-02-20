@@ -11,7 +11,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'wisarta',
+      title: 'wisata',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
       home: const FirstScreen(),
