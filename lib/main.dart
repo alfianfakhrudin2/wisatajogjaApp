@@ -79,30 +79,41 @@ class FirstScreen extends StatelessWidget {
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('Calendar'),
+                        Text('Open Everyday'),
                       ],
                     ),
                     Column(
                       children: const <Widget>[
-                        Icon(Icons.calendar_today),
+                        Icon(Icons.access_time_rounded),
                         SizedBox(
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('Calendar'),
+                        Text('09:00 - 20:00'),
                       ],
                     ),
                     Column(
                       children: const <Widget>[
-                        Icon(Icons.calendar_today),
+                        Icon(Icons.monetization_on_rounded),
                         SizedBox(
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('Calendar'),
+                        Text('Rp 25.000,-'),
                       ],
                     ),
                   ],
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi. Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi. Wisata ini merupaka Wisata ini merupakan tempat wisata yang sangat indah dan menarik untuk dikunjungi.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    color: Color.fromARGB(255, 20, 20, 20),
+                  ),
                 ),
               )
             ]),
