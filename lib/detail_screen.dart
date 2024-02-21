@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
+
 class FirstScreen extends StatelessWidget {
   const FirstScreen({Key? key}) : super(key: key);
 
@@ -40,6 +42,7 @@ class FirstScreen extends StatelessWidget {
               //   },
               //   child: const Text('Go to First Screen'),
               // ),
+
               Container(
                   margin: const EdgeInsets.only(top: 16.0),
                   child: const Text(
@@ -47,8 +50,7 @@ class FirstScreen extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 30.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 20, 20, 20),
+                      fontFamily: 'Staatliches',
                     ),
                   )),
 
@@ -58,33 +60,39 @@ class FirstScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Icon(Icons.calendar_today),
-                        SizedBox(
+                        const SizedBox(
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('Open Everyday'),
+                        Text(
+                          'Open Everyday',
+                          style: informationTextStyle,
+                        ),
                       ],
                     ),
                     Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Icon(Icons.access_time_rounded),
                         SizedBox(
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('09:00 - 20:00'),
+                        Text(
+                          '09:00 - 20:00',
+                          style: informationTextStyle,
+                        ),
                       ],
                     ),
                     Column(
-                      children: const <Widget>[
+                      children: <Widget>[
                         Icon(Icons.monetization_on_rounded),
                         SizedBox(
                           // Use of SizedBox
                           height: 8.0,
                         ),
-                        Text('Rp 25.000,-'),
+                        Text('Rp 25.000,-', style: informationTextStyle),
                       ],
                     ),
                   ],

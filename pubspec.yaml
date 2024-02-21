@@ -19,3 +19,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+  fonts:
+    - family: Staatliches
+      fonts:
+        - asset: fonts/Staatliches-Regular.ttf
+    - family: Oxygen
+      fonts:
+        - asset: fonts/Oxygen-Regular.ttf
