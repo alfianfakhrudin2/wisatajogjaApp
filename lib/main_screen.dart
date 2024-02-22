@@ -26,6 +26,32 @@ class SecondScreen extends StatelessWidget {
           },
         ),
       ),
+      body: Card(
+        child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Image.asset('assets/bosscha.jpg'),
+              Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text('Bosscha Observatory',
+                          style: TextStyle(fontSize: 16.0)),
+                      SizedBox(
+                        height: 10.0,
+                      ),
+                      Text('Lembang', style: TextStyle(fontSize: 12.0)),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Go to First Screen'),
+                      ),
+                    ],
+                  )),
+            ]),
+      ),
     );
   }
 }

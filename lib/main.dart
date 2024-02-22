@@ -1,9 +1,7 @@
 import 'package:wisatajogja/detail_screen.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MainApp());
-}
+void main() => runApp(const MainApp());
 
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
@@ -11,7 +9,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'wisata',
+      title: 'wisata jogja',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
       home: const FirstScreen(),
