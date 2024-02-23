@@ -38,21 +38,28 @@ class SecondScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
                       Expanded(
+                        flex: 1,
                         child: Image.asset('assets/bosscha.jpg'),
                       ),
                       Expanded(
                         flex: 2,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Text('Bosscha Observatory',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20)),
-                            SizedBox(height: 10),
-                            Text('Lembang, Bandung',
-                                style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 16)),
-                          ],
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Text('Bosscha Observatory',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20)),
+                              SizedBox(height: 10),
+                              Text('Lembang, Bandung',
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 16)),
+                            ],
+                          ),
                         ),
                       )
                     ],
