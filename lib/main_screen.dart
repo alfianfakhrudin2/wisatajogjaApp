@@ -48,22 +48,10 @@ class SecondScreen extends StatelessWidget {
                             Text('Bosscha Observatory',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20)),
+                            SizedBox(height: 10),
                             Text('Lembang, Bandung',
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 16)),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const DetailScreen()));
-                                },
-                                child: const Text('Detail'),
-                              ),
-                            )
                           ],
                         ),
                       )
