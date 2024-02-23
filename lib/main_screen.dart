@@ -29,7 +29,7 @@ class SecondScreen extends StatelessWidget {
       body: InkWell(
         onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return DetailScreen();
+            return FirstScreen();
           }));
         },
         child: Card(
