@@ -35,19 +35,38 @@ class SecondScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
                     children: <Widget>[
-                      Text('Bosscha Observatory',
-                          style: TextStyle(fontSize: 16.0)),
-                      SizedBox(
-                        height: 10.0,
+                      Expanded(
+                        child: Image.asset('assets/bosscha.jpg'),
                       ),
-                      Text('Lembang', style: TextStyle(fontSize: 12.0)),
-                      ElevatedButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('Go to First Screen'),
-                      ),
+                      Expanded(
+                        flex: 2,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text('Bosscha Observatory',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20)),
+                            Text('Lembang, Bandung',
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 16)),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 8.0),
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              const DetailScreen()));
+                                },
+                                child: const Text('Detail'),
+                              ),
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   )),
             ]),
