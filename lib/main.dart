@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wisatajogja/detail_screen.dart';
 import 'package:wisatajogja/main_screen.dart';
+import 'package:wisatajogja/model/tourism_place.dart';
 
 void main() => runApp(const MainApp());
 
