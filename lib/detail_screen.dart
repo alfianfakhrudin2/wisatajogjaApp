@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+// ignore: unused_import
+import 'package:wisatajogja/main_screen.dart';
 
 var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
 
-class FirstScreen extends StatelessWidget {
-  const FirstScreen({Key? key}) : super(key: key);
+class DetailScreen extends StatelessWidget {
+  const DetailScreen({Key? key, required}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

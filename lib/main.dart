@@ -1,5 +1,6 @@
-import 'package:wisatajogja/detail_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:wisatajogja/detail_screen.dart';
+import 'package:wisatajogja/main_screen.dart';
 
 void main() => runApp(const MainApp());
 
@@ -12,7 +13,7 @@ class MainApp extends StatelessWidget {
       title: 'wisata jogja',
       theme: ThemeData(),
       debugShowCheckedModeBanner: false,
-      home: const FirstScreen(),
+      home: const MainScreen(),
     );
   }
 }
