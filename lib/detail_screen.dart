@@ -20,12 +20,13 @@ class DetailScreen extends StatelessWidget {
             Stack(
               children: <Widget>[
                 Image.asset(place.imageAsset),
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
+                SafeArea(
+                    child: IconButton(
+                  icon: const Icon(Icons.arrow_back, color: Colors.white),
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                )
+                ))
               ],
             ),
             Container(
@@ -35,7 +36,7 @@ class DetailScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30.0,
-                  color: Colors.white,
+                  // color: Colors.white,
                   fontFamily: 'Staatliches',
                 ),
               ),
@@ -92,7 +93,7 @@ class DetailScreen extends StatelessWidget {
                 style: const TextStyle(
                   fontSize: 16.0,
                   fontFamily: 'Oxygen',
-                  color: Color.fromARGB(255, 255, 255, 255),
+                  // color: Color.fromARGB(255, 255, 255, 255),
                 ),
               ),
             ),
