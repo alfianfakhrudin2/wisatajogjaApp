@@ -19,6 +19,53 @@ class MainApp extends StatelessWidget {
   }
 }
 
+// class HomeScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Hero Animation Sample"),
+//       ),
+//       body: Center(
+//         child: Column(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: <Widget>[
+//             Hero(
+//               tag: "logo",
+//               child: Image.asset(
+//                 "asset/dicoding.png",
+//                 width: 150,
+//                 height: 150,
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// class AnotherScreen extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Another Screen"),
+//       ),
+//       body: Center(
+//         child: Hero(
+//           tag: "logo",
+//           child: Image.asset(
+//             "asset/dicoding.png",
+//             width: 75,
+//             height: 75,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 // class DetailScreen extends StatelessWidget {
 //   const DetailScreen({Key? key}) : super(key: key);
 
