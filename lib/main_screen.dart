@@ -28,8 +28,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Wisata Bandung. Size: ${MediaQuery.of(context).size.width}'),
+        title: Text('Wisata Bandung'),
         backgroundColor: const Color.fromARGB(255, 198, 209, 226),
         actions: [
           IconButton(
@@ -125,9 +124,11 @@ class TourismPlaceGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(16.0),
       child: GridView.count(
         crossAxisCount: gridCount,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
         children: tourismPlaceList.map((place) {
           return InkWell(
             onTap: () {

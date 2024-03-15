@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/main_screen.dart';
@@ -8,6 +9,184 @@ class DetailScreen extends StatelessWidget {
   final TourismPlace place;
 
   const DetailScreen({Key? key, required this.place}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+      if (constraints.maxWidth <= 600) {
+        return DetailMobilePage(place: place);
+      } else if (constraints.maxWidth <= 1200) {
+        return DetailWebPage(place: place);
+      } else {
+        return DetailMobilePage(place: place);
+      }
+    });
+  }
+}
+
+class DetailWebPage extends StatefulWidget {
+  final TourismPlace place;
+  DetailWebPage({Key? key, required this.place}) : super(key: key);
+  @override
+  _DetailWebPageState createState() => _DetailWebPageState();
+}
+
+class _DetailWebPageState extends State<DetailWebPage> {
+  final _scrollController = ScrollController();
+
+  @override
+  Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
+    return Scaffold(
+      appBar: kIsWeb ? null : AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(),
+        child: Center(
+          child: SizedBox(
+            width: screenWidth <= 1200 ? 800 : 1200,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  'wisata jogja',
+                  style: TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Image.asset(widget.place.imageAsset),
+                          const SizedBox(height: 20),
+                          Text(
+                            widget.place.name,
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          const SizedBox(height: 10),
+                          Row(
+                            children: [
+                              Icon(Icons.calendar_today),
+                              const SizedBox(width: 8),
+                              Text(widget.place.openDays,
+                                  style: informationTextStyle),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.access_time),
+                              const SizedBox(width: 8),
+                              Text(widget.place.openTime,
+                                  style: informationTextStyle),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Icon(Icons.monetization_on),
+                              const SizedBox(width: 8),
+                              Text(widget.place.ticketPrice,
+                                  style: informationTextStyle),
+                            ],
+                          ),
+                          const SizedBox(height: 20),
+                          Text(
+                            widget.place.description,
+                            style: TextStyle(
+                              fontSize: 16,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(width: 32),
+                    Expanded(
+                      child: Card(
+                        child: Container(
+                          padding: const EdgeInsets.all(16),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: <Widget>[
+                              Container(
+                                child: Text(
+                                  'Gallery',
+                                  textAlign: TextAlign.center,
+                                  style: const TextStyle(
+                                    fontSize: 30.0,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Staatliches',
+                                  ),
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Row(
+                                    children: <Widget>[
+                                      const Icon(Icons.calendar_today),
+                                      const SizedBox(width: 8),
+                                      Text(
+                                        widget.place.openDays,
+                                        style: informationTextStyle,
+                                      ),
+                                    ],
+                                  ),
+                                  const FavoriteButton(),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  const Icon(Icons.access_time),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    widget.place.openTime,
+                                    style: informationTextStyle,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  const Icon(Icons.monetization_on),
+                                  const SizedBox(width: 8),
+                                  Text(
+                                    widget.place.ticketPrice,
+                                    style: informationTextStyle,
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class DetailMobilePage extends StatelessWidget {
+  final TourismPlace place;
+
+  const DetailMobilePage({Key? key, required this.place}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
