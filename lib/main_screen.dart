@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:wisatajogja/detail_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
@@ -26,7 +28,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Wisata Apps'),
+        title:
+            Text('Wisata Bandung. Size: ${MediaQuery.of(context).size.width}'),
         backgroundColor: const Color.fromARGB(255, 198, 209, 226),
         actions: [
           IconButton(
@@ -42,9 +45,90 @@ class _MainScreenState extends State<MainScreen> {
           onPressed: () {},
         ),
       ),
-      body: ListView.builder(
-        itemBuilder: (context, index) {
-          final TourismPlace place = filteredPlaces[index];
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints) {
+          if (constraints.maxWidth <= 600) {
+            return TourismPlaceList();
+          } else if (constraints.maxWidth <= 1200) {
+            return const TourismPlaceGrid(gridCount: 4);
+          } else {
+            return const TourismPlaceGrid(gridCount: 6);
+          }
+        },
+      ),
+    );
+  }
+}
+
+//untuk list view
+class TourismPlaceList extends StatelessWidget {
+  const TourismPlaceList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: tourismPlaceList.length,
+      itemBuilder: (context, index) {
+        final TourismPlace place = tourismPlaceList[index];
+        return InkWell(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return DetailScreen(
+                    place: place,
+                  );
+                },
+              ),
+            );
+          },
+          child: Card(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: Image.asset(place.imageAsset),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: <Widget>[
+                        Text(
+                          place.name,
+                          style: const TextStyle(fontSize: 16.0),
+                        ),
+                        Text(place.location),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+//untuk grid view
+class TourismPlaceGrid extends StatelessWidget {
+  final int gridCount;
+  const TourismPlaceGrid({Key? key, required this.gridCount}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GridView.count(
+        crossAxisCount: gridCount,
+        children: tourismPlaceList.map((place) {
           return InkWell(
             onTap: () {
               Navigator.push(
@@ -59,38 +143,34 @@ class _MainScreenState extends State<MainScreen> {
               );
             },
             child: Card(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
                   Expanded(
                     flex: 1,
-                    child: Hero(
-                      tag: place.name,
-                      child: Image.asset(place.imageAsset),
+                    child: Image.asset(
+                      place.imageAsset,
+                      fit: BoxFit.cover,
                     ),
                   ),
-                  Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(place.name,
-                              style: TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.bold)),
-                          SizedBox(height: 10),
-                          Text(place.location),
-                        ],
-                      ),
+                  const SizedBox(height: 8.0),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      place.name,
+                      style: const TextStyle(
+                          fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
-                  )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(place.location),
+                  ),
                 ],
               ),
             ),
           );
-        },
-        itemCount: filteredPlaces.length,
+        }).toList(),
       ),
     );
   }
