@@ -14,9 +14,7 @@ class DetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-      if (constraints.maxWidth <= 600) {
-        return DetailMobilePage(place: place);
-      } else if (constraints.maxWidth <= 1200) {
+      if (constraints.maxWidth > 800) {
         return DetailWebPage(place: place);
       } else {
         return DetailMobilePage(place: place);
@@ -42,10 +40,13 @@ class _DetailWebPageState extends State<DetailWebPage> {
     return Scaffold(
       appBar: kIsWeb ? null : AppBar(),
       body: Padding(
-        padding: const EdgeInsets.symmetric(),
+        padding: const EdgeInsets.symmetric(
+          vertical: 16,
+          horizontal: 64,
+        ),
         child: Center(
           child: SizedBox(
-            width: screenWidth <= 1200 ? 800 : 1200,
+            width: 1200,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -56,53 +57,38 @@ class _DetailWebPageState extends State<DetailWebPage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 32),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Image.asset(widget.place.imageAsset),
-                          const SizedBox(height: 20),
-                          Text(
-                            widget.place.name,
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          ClipRRect(
+                            child: Image.asset(widget.place.imageAsset),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              Icon(Icons.calendar_today),
-                              const SizedBox(width: 8),
-                              Text(widget.place.openDays,
-                                  style: informationTextStyle),
-                            ],
+                          SizedBox(
+                            height: 16,
                           ),
-                          Row(
-                            children: [
-                              Icon(Icons.access_time),
-                              const SizedBox(width: 8),
-                              Text(widget.place.openTime,
-                                  style: informationTextStyle),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              Icon(Icons.monetization_on),
-                              const SizedBox(width: 8),
-                              Text(widget.place.ticketPrice,
-                                  style: informationTextStyle),
-                            ],
-                          ),
-                          const SizedBox(height: 20),
-                          Text(
-                            widget.place.description,
-                            style: TextStyle(
-                              fontSize: 16,
+                          Scrollbar(
+                            controller: _scrollController,
+                            child: Container(
+                              height: 150,
+                              padding: const EdgeInsets.only(bottom: 16.0),
+                              child: ListView(
+                                controller: _scrollController,
+                                scrollDirection: Axis.horizontal,
+                                children: widget.place.imageUrls.map((url) {
+                                  return Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: Image.network(url),
+                                    ),
+                                  );
+                                }).toList(),
+                              ),
                             ),
                           ),
                         ],
@@ -118,7 +104,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                             children: <Widget>[
                               Container(
                                 child: Text(
-                                  'Gallery',
+                                  widget.place.name,
                                   textAlign: TextAlign.center,
                                   style: const TextStyle(
                                     fontSize: 30.0,
@@ -167,6 +153,18 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   ),
                                 ],
                               ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 16.0),
+                                child: Text(
+                                  widget.place.description,
+                                  textAlign: TextAlign.justify,
+                                  style: const TextStyle(
+                                    fontSize: 16.0,
+                                    fontFamily: 'Oxygen',
+                                  ),
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -180,6 +178,12 @@ class _DetailWebPageState extends State<DetailWebPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
   }
 }
 
