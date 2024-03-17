@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wisatajogja/screen/detail_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
+import 'package:wisatajogja/screen/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -33,7 +34,17 @@ class _MainScreenState extends State<MainScreen> {
               showSearch(context: context, delegate: PlaceSearchDelegate());
             },
           ),
-          IconButton(onPressed: () {}, icon: const Icon(Icons.settings))
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SettingsScreen(),
+                ),
+              );
+            },
+            icon: const Icon(Icons.settings),
+          ),
         ],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -50,7 +61,7 @@ class _MainScreenState extends State<MainScreen> {
             width: double.infinity,
             height: 100,
             padding: EdgeInsets.all(16.0),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
@@ -66,7 +77,7 @@ class _MainScreenState extends State<MainScreen> {
                 bottomRight: Radius.circular(10),
               ),
             ),
-            child: Row(
+            child: const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 CircleAvatar(
@@ -81,7 +92,7 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Nama Anda', // Ganti dengan nama pengguna
+                      'Alfian', // Ganti dengan nama pengguna
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 18.0,
@@ -90,7 +101,7 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     SizedBox(height: 4.0),
                     Text(
-                      'email@example.com', // Ganti dengan email pengguna
+                      'alfianganteng@gmail.com', // Ganti dengan email pengguna
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 14.0,
