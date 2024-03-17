@@ -1,22 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:wisatajogja/detail_screen.dart';
-import 'package:wisatajogja/main_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:wisatajogja/screen/detail_screen.dart';
+import 'package:wisatajogja/screen/main_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
+import 'package:wisatajogja/provider/themeProv.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+// void main() => runApp(const MainApp());
 
-void main() => runApp(const MainApp());
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
+  runApp(MainApp());
+}
 
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}) : super(key: key);
 
+  static const String title = 'Wisata Jogja';
+
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'wisata jogja',
-      theme: ThemeData(),
-      debugShowCheckedModeBanner: false,
-      home: const MainScreen(),
-    );
-  }
+  Widget build(BuildContext context) => ChangeNotifierProvider(
+        create: (context) => Themeprov(),
+        builder: (context, _) {
+          final themeProv = Provider.of<Themeprov>(context);
+
+          return MaterialApp(
+            title: 'wisata jogja',
+            debugShowCheckedModeBanner: false,
+            themeMode: themeProv.themeMode,
+            theme: myThemes.lightTheme,
+            darkTheme: myThemes.darkTheme,
+            home: MainScreen(),
+          );
+        },
+      );
 }
 
 // class HomeScreen extends StatelessWidget {

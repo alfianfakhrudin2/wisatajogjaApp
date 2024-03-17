@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
-import 'package:wisatajogja/main_screen.dart';
+import 'package:wisatajogja/screen/main_screen.dart';
 
 var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
 
@@ -140,7 +140,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Row(
