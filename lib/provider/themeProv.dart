@@ -1,40 +1,60 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Themeprov with ChangeNotifier {
-  ThemeMode themeMode = ThemeMode.system;
+  late bool _isDark;
 
-  bool get isDarkMode {
-    if (themeMode == ThemeMode.system) {
-      final brightness = SchedulerBinding.instance.window.platformBrightness;
-      return brightness == Brightness.dark;
-    } else {
-      return themeMode == ThemeMode.dark;
-    }
-  }
+  late SharedPreferences storage;
 
-  void toggleTheme(bool isOn) {
-    themeMode = isOn ? ThemeMode.dark : ThemeMode.light;
+  //Custom dark theme
+  final darkTheme = ThemeData(
+    primaryColor: Colors.black12,
+    brightness: Brightness.dark,
+    primaryColorDark: Colors.black12,
+  );
+
+  //Custom light theme
+  final lightTheme = ThemeData(
+      primaryColor: Colors.white,
+      brightness: Brightness.light,
+      primaryColorDark: Colors.white);
+
+  //Now we want to save the last changed theme value
+
+  //Dark mode toggle action
+  changeTheme() {
+    _isDark = !isDark;
+
+    //Save the value to secure storage
+    storage.setBool("isDark", _isDark);
     notifyListeners();
   }
-}
 
-class myThemes {
-  static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey.shade900,
-    primaryColor: Colors.black,
-    colorScheme: ColorScheme.dark(),
-    iconTheme: IconThemeData(color: Colors.purple.shade200, opacity: 0.8),
-    textTheme: TextTheme(
-      bodyText1: TextStyle(color: Colors.white),
-      bodyText2: TextStyle(color: Colors.white),
-    ),
-  );
+  //Init method of provider
+  init() async {
+    //After we re run the app
+    storage = await SharedPreferences.getInstance();
+    _isDark = storage.getBool("isDark") ?? false;
+    notifyListeners();
+  }
 
-  static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.white,
-    primaryColor: Colors.white,
-    colorScheme: ColorScheme.light(),
-    iconTheme: IconThemeData(color: Colors.red, opacity: 0.8),
-  );
+  // Constructor
+  Themeprov({bool isDark = false}) {
+    _isDark = isDark;
+  }
+
+  // Getter for isDark
+  bool get isDark => _isDark;
+
+  // Method to toggle theme
+  Future<void> toggleTheme() async {
+    _isDark = !_isDark;
+    notifyListeners(); // Notify listeners to update UI
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkMode', _isDark); // Save theme preference
+  }
+
+  void setDarkMode(bool isDarkMode) {}
 }

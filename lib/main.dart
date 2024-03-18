@@ -6,6 +6,7 @@ import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/provider/themeProv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wisatajogja/screen/settings_screen.dart';
 // void main() => runApp(const MainApp());
 
 Future main() async {
@@ -19,26 +20,35 @@ Future main() async {
 }
 
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({super.key});
 
   static const String title = 'Wisata Jogja';
 
   @override
-  Widget build(BuildContext context) => ChangeNotifierProvider(
-        create: (context) => Themeprov(),
-        builder: (context, _) {
-          final themeProv = Provider.of<Themeprov>(context);
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (BuildContext context) => Themeprov()..init(),
+      child: Consumer<Themeprov>(builder: (context, Themeprov notifier, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Dark Theme',
+          //By default theme setting, you can also set system
+          // when your mobile theme is dark the app also become dark
 
-          return MaterialApp(
-            title: 'wisata jogja',
-            debugShowCheckedModeBanner: false,
-            themeMode: themeProv.themeMode,
-            theme: myThemes.lightTheme,
-            darkTheme: myThemes.darkTheme,
-            home: MainScreen(),
-          );
-        },
-      );
+          themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
+
+          //Our custom theme applied
+          darkTheme: notifier.isDark ? notifier.darkTheme : notifier.lightTheme,
+
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+          ),
+          home: MainScreen(),
+        );
+      }),
+    );
+  }
 }
 
 // class HomeScreen extends StatelessWidget {
