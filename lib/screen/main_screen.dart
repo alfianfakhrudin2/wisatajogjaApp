@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:wisatajogja/screen/detail_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/screen/settings_screen.dart';
@@ -13,334 +12,185 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late List<TourismPlace> filteredPlaces;
+  late TextEditingController _searchController;
 
   @override
   void initState() {
     super.initState();
     filteredPlaces = tourismPlaceList;
+    _searchController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _searchController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Wisata Bandung'),
+        title: const Text('Main Screen'),
         actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-            ),
-            onPressed: () {
-              showSearch(context: context, delegate: PlaceSearchDelegate());
-            },
-          ),
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Settings(),
+                  builder: (context) => const Settings(),
                 ),
               );
             },
             icon: const Icon(Icons.settings),
           ),
-        ],
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(20),
-            bottomRight: Radius.circular(20),
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const Settings(),
+                  ),
+                );
+              },
+              child: const CircleAvatar(
+                backgroundImage: AssetImage('assets/farm-house.jpg'),
+              ),
+            ),
           ),
+        ],
+      ),
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(16),
+              child: TextField(
+                controller: _searchController,
+                decoration: InputDecoration(
+                  hintText: 'Search...',
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: BorderSide.none,
+                  ),
+                  prefixIcon: const Icon(
+                    Icons.search,
+                    color: Colors.green,
+                  ),
+                ),
+                onChanged: _onSearchTextChanged,
+              ),
+            ),
+            _buildCategoryList(),
+            const SizedBox(height: 10),
+            Expanded(child: _buildTourismPlaceGrid()),
+          ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 16.0, left: 16.0, right: 16.0),
-            width: double.infinity,
-            height: 100,
-            padding: EdgeInsets.all(16.0),
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.blue,
-                  Colors.green,
-                ],
-              ),
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-                bottomLeft: Radius.circular(10),
-                bottomRight: Radius.circular(10),
-              ),
-            ),
-            child: const Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundColor: Colors.white,
-                  // Ganti dengan gambar profil
-                  backgroundImage: AssetImage('assets/farm-house.jpg'),
-                  radius: 30,
-                ),
-                SizedBox(width: 16.0),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Alfian', // Ganti dengan nama pengguna
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: 4.0),
-                    Text(
-                      'alfianganteng@gmail.com', // Ganti dengan email pengguna
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 14.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: LayoutBuilder(
-              builder: (BuildContext context, BoxConstraints constraints) {
-                if (constraints.maxWidth <= 600) {
-                  return Padding(
-                      padding: const EdgeInsets.only(top: 16.0),
-                      child: TourismPlaceList());
-                } else if (constraints.maxWidth <= 1200) {
-                  return const TourismPlaceGrid(gridCount: 4);
-                } else {
-                  return const TourismPlaceGrid(gridCount: 6);
-                }
-              },
-            ),
-          ),
-        ],
-      ),
     );
   }
-}
 
-//untuk list view
-class TourismPlaceList extends StatelessWidget {
-  const TourismPlaceList({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    padding:
-    const EdgeInsets.only(top: 80.0);
-    return SizedBox(
-      child: ListView.builder(
-        itemCount: tourismPlaceList.length,
-        itemBuilder: (context, index) {
-          final TourismPlace place = tourismPlaceList[index];
-          return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DetailScreen(
-                      place: place,
-                    );
-                  },
-                ),
-              );
-            },
-            child: Card(
-              margin: const EdgeInsets.only(
-                  top: 6, bottom: 10, right: 20, left: 20),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                ),
-                height: 110,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.max,
-                  children: <Widget>[
-                    Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: MediaQuery.of(context).size.height,
-                        child: Padding(
-                          padding: EdgeInsets.only(
-                            left: 16.0,
-                            top: 10.0,
-                            bottom: 10.0,
-                          ), // Atur padding di sebelah kiri,
-                          child: ClipRRect(
-                            child: Image.asset(
-                              place.imageAsset,
-                              fit: BoxFit.cover,
-                            ),
-                            borderRadius: BorderRadius.circular(8.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 2,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: <Widget>[
-                            Text(
-                              place.name,
-                              style: const TextStyle(
-                                  fontSize: 16.0, fontWeight: FontWeight.bold),
-                            ),
-                            Text(place.location),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        },
-      ),
-    );
-  }
-}
-
-//untuk grid view
-class TourismPlaceGrid extends StatelessWidget {
-  final int gridCount;
-  const TourismPlaceGrid({Key? key, required this.gridCount}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  Widget _buildTourismPlaceGrid() {
     return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: GridView.count(
-        crossAxisCount: gridCount,
-        crossAxisSpacing: 16,
-        mainAxisSpacing: 16,
-        children: tourismPlaceList.map((place) {
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: GridView.builder(
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: filteredPlaces.length,
+        itemBuilder: (context, index) {
+          final place = filteredPlaces[index];
           return InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return DetailScreen(
-                      place: place,
-                    );
-                  },
-                ),
-              );
-            },
+            onTap: () => _navigateToDetailScreen(place),
             child: Card(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Expanded(
-                    flex: 1,
-                    child: Image.asset(
-                      place.imageAsset,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  const SizedBox(height: 8.0),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      place.name,
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
+                  Image.asset(
+                    place.imageAsset,
+                    width: double.infinity,
+                    height: 120,
+                    fit: BoxFit.cover,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(place.location),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          place.name,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(place.location),
+                      ],
+                    ),
                   ),
                 ],
               ),
             ),
           );
-        }).toList(),
-      ),
-    );
-  }
-}
-
-class PlaceSearchDelegate extends SearchDelegate<String> {
-  @override
-  List<Widget> buildActions(BuildContext context) {
-    return [
-      IconButton(
-        icon: const Icon(Icons.clear),
-        onPressed: () {
-          query = '';
         },
       ),
-    ];
-  }
-
-  @override
-  Widget buildLeading(BuildContext context) {
-    return IconButton(
-      icon: const Icon(Icons.arrow_back),
-      onPressed: () {
-        close(context, '');
-      },
     );
   }
 
-  @override
-  Widget buildResults(BuildContext context) {
-    return Center(
-      child: Text('No results found for "$query"'),
+  Widget _buildCategoryList() {
+    return SizedBox(
+      height: 40,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 16.0),
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          children: [
+            _buildCategoryItem('Yogyakarta'),
+            _buildCategoryItem('Sleman'),
+            _buildCategoryItem('Bantul'),
+            _buildCategoryItem('Kulon Progo'),
+            _buildCategoryItem('Gunungkidul'),
+            _buildCategoryItem('Magelang'),
+            _buildCategoryItem('Solo'),
+          ],
+        ),
+      ),
     );
   }
 
-  @override
-  Widget buildSuggestions(BuildContext context) {
-    final List<TourismPlace> filteredPlaces = tourismPlaceList
-        .where(
-            (place) => place.name.toLowerCase().contains(query.toLowerCase()))
-        .toList();
+  Widget _buildCategoryItem(String cityName) {
+    return Container(
+      margin: const EdgeInsets.only(right: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.grey[300],
+      ),
+      child: Text(cityName),
+    );
+  }
 
-    return ListView.builder(
-      itemCount: filteredPlaces.length,
-      itemBuilder: (context, index) {
-        final TourismPlace place = filteredPlaces[index];
-        return ListTile(
-          title: Text(place.name),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return DetailScreen(
-                    place: place,
-                  );
-                },
-              ),
-            );
-          },
-        );
-      },
+  void _onSearchTextChanged(String value) {
+    setState(() {
+      filteredPlaces = tourismPlaceList
+          .where(
+              (place) => place.name.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
+
+  void _navigateToDetailScreen(TourismPlace place) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailScreen(place: place),
+      ),
     );
   }
 }

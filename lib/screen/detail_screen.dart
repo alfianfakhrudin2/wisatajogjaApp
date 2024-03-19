@@ -68,7 +68,7 @@ class _DetailWebPageState extends State<DetailWebPage> {
                             child: Image.asset(widget.place.imageAsset),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           Scrollbar(
@@ -219,7 +219,7 @@ class DetailMobilePage extends StatelessWidget {
                             },
                           ),
                         ),
-                        FavoriteButton(),
+                        const FavoriteButton(),
                       ],
                     ),
                   ),
@@ -231,7 +231,7 @@ class DetailMobilePage extends StatelessWidget {
               child: Text(
                 place.name,
                 textAlign: TextAlign.center,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 30.0,
                   // color: Colors.white,
                   fontFamily: 'Staatliches',

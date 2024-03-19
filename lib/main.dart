@@ -6,10 +6,10 @@ import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/provider/themeProv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:wisatajogja/screen/settings_screen.dart';
+
 // void main() => runApp(const MainApp());
 
-Future main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
@@ -28,7 +28,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (BuildContext context) => Themeprov()..init(),
-      child: Consumer<Themeprov>(builder: (context, Themeprov notifier, child) {
+      child: Consumer<Themeprov>(builder: (context, notifier, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Dark Theme',
@@ -50,77 +50,3 @@ class MainApp extends StatelessWidget {
     );
   }
 }
-
-// class HomeScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Hero Animation Sample"),
-//       ),
-//       body: Center(
-//         child: Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             Hero(
-//               tag: "logo",
-//               child: Image.asset(
-//                 "asset/dicoding.png",
-//                 width: 150,
-//                 height: 150,
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class AnotherScreen extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Another Screen"),
-//       ),
-//       body: Center(
-//         child: Hero(
-//           tag: "logo",
-//           child: Image.asset(
-//             "asset/dicoding.png",
-//             width: 75,
-//             height: 75,
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-// class DetailScreen extends StatelessWidget {
-//   const DetailScreen({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Column(
-//         children: <Widget>[
-//           const Text('Second Screen'),
-//           ElevatedButton(
-//             onPressed: () {
-//               Navigator.pop(context);
-//             },
-//             child: const Text('Go to First Screen'),
-//           ),
-//         ],
-//         // child: ElevatedButton(
-//         //   onPressed: () {
-//         //     Navigator.pop(context);
-//         //   },
-//         //   child: const Text('Go to First Screen'),
-//         // ),
-//       ),
-//     );
-//   }
-// }
