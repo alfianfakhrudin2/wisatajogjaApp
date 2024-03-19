@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wisatajogja/screen/detail_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
+import 'package:wisatajogja/screen/profile_screen.dart';
 import 'package:wisatajogja/screen/settings_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -31,19 +32,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Main Screen'),
+        title: const Text('Hello, Kelvin'),
         actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Settings(),
-                ),
-              );
-            },
-            icon: const Icon(Icons.settings),
-          ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: GestureDetector(
@@ -51,7 +41,7 @@ class _MainScreenState extends State<MainScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const Settings(),
+                    builder: (context) => const ProfileScreen(),
                   ),
                 );
               },
@@ -73,15 +63,23 @@ class _MainScreenState extends State<MainScreen> {
                 decoration: InputDecoration(
                   hintText: 'Search...',
                   filled: true,
-                  fillColor: Colors.grey[200],
+                  fillColor: Theme.of(context).brightness == Brightness.light
+                      ? Color.fromARGB(255, 255, 255, 255)
+                      : Colors.black,
                   border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide(
+                      color: const Color.fromARGB(
+                          255, 224, 224, 224), // Warna border
+                      width: 2.0, // Ketebalan border
+                    ),
                   ),
                   prefixIcon: const Icon(
                     Icons.search,
                     color: Colors.green,
                   ),
+                  contentPadding: EdgeInsets.symmetric(
+                      vertical: 10.0), // Atur ketinggian search bar
                 ),
                 onChanged: _onSearchTextChanged,
               ),
@@ -97,7 +95,7 @@ class _MainScreenState extends State<MainScreen> {
 
   Widget _buildTourismPlaceGrid() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12),
       child: GridView.builder(
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,

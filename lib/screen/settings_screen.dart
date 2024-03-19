@@ -24,6 +24,27 @@ class Settings extends StatelessWidget {
                   onChanged: (value) => notifier.toggleTheme(),
                 ),
               ),
+              ListTile(
+                leading: const Icon(Icons.language),
+                title: const Text("Language"),
+                trailing: DropdownButton<String>(
+                  value: 'English', // Nilai awal bahasa
+                  onChanged: (String? newValue) {
+                    // Implementasi perubahan bahasa di sini
+                    // Misalnya, dengan menetapkan nilai ke variabel state atau menggunakan provider
+                  },
+                  items: <String>[
+                    'English',
+                    'Indonesian'
+                  ] // Daftar bahasa yang tersedia
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
             ],
           );
         },
