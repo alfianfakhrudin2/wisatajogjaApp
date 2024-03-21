@@ -12,113 +12,117 @@ class ProfileScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // Foto Profil dan Nama
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage('assets/profile_image.jpg'),
-                ),
-                const SizedBox(width: 16),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      'John Doe',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                // Foto Profil dan Nama
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    CircleAvatar(
+                      radius: constraints.maxWidth < 600 ? 40 : 80,
+                      // Mengatur radius menjadi 80 untuk layar besar dan 40 untuk layar kecil
+                      backgroundImage: AssetImage('assets/freya.png'),
                     ),
-                    Text(
-                      'john.doe@example.com',
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
+                    const SizedBox(width: 16),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          'Aura',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Text(
+                          'john.doe@example.com',
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ],
-            ),
-            const SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-            // Section Ganti Password
-            Text(
-              'Ganti Password',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildListItem(
-              context,
-              'Reset Password',
-              icon: Icons.lock,
-              onPressed: () {
-                // Implementasi aksi ketika tombol "Change Password" ditekan
-              },
-            ),
-            const Divider(),
-
-            // Section Menuju Halaman Settings
-            Text(
-              'Settings',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildListItem(
-              context,
-              'Go to Settings',
-              icon: Icons.settings,
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const Settings(),
+                // Section Ganti Password
+                const Text(
+                  'Ganti Password',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
                   ),
-                );
-              },
-            ),
-            const Divider(),
+                ),
+                const SizedBox(height: 10),
+                _buildListItem(
+                  context,
+                  'Reset Password',
+                  icon: Icons.lock,
+                  onPressed: () {
+                    // Implementasi aksi ketika tombol "Change Password" ditekan
+                  },
+                ),
+                const Divider(),
 
-            // Section Versi Aplikasi
-            Text(
-              'Versi Aplikasi',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 10),
-            _buildListItem(
-              context,
-              '1.0.0', // Ganti dengan versi aplikasi yang sesuai
-              icon: Icons.info,
-              onPressed: () {
-                // Implementasi aksi ketika tombol versi aplikasi ditekan
-              },
-            ),
-            const Divider(),
+                // Section Menuju Halaman Settings
+                const Text(
+                  'Settings',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildListItem(
+                  context,
+                  'Go to Settings',
+                  icon: Icons.settings,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const Settings(),
+                      ),
+                    );
+                  },
+                ),
+                const Divider(),
 
-            // Section Logout
-            _buildListItem(
-              context,
-              'Logout',
-              icon: Icons.logout,
-              onPressed: () {
-                // Implementasi aksi ketika tombol "Logout" ditekan
-              },
-            ),
-          ],
+                // Section Versi Aplikasi
+                const Text(
+                  'Versi Aplikasi',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 10),
+                _buildListItem(
+                  context,
+                  '1.0.0', // Ganti dengan versi aplikasi yang sesuai
+                  icon: Icons.info,
+                  onPressed: () {
+                    // Implementasi aksi ketika tombol versi aplikasi ditekan
+                  },
+                ),
+                const Divider(),
+                // Section Logout
+                _buildListItem(
+                  context,
+                  'Logout',
+                  icon: Icons.logout,
+                  onPressed: () {
+                    // Implementasi aksi ketika tombol "Logout" ditekan
+                  },
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

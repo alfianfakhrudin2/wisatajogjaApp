@@ -32,7 +32,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello, Kelvin'),
+        title: const Text('Hello, Dean'),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -46,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
                 );
               },
               child: const CircleAvatar(
-                backgroundImage: AssetImage('assets/farm-house.jpg'),
+                backgroundImage: AssetImage('assets/freya.png'),
               ),
             ),
           ),
@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   prefixIcon: const Icon(
                     Icons.search,
-                    color: Colors.green,
+                    color: Colors.grey,
                   ),
                   contentPadding: EdgeInsets.symmetric(
                       vertical: 10.0), // Atur ketinggian search bar
@@ -108,27 +108,53 @@ class _MainScreenState extends State<MainScreen> {
           return InkWell(
             onTap: () => _navigateToDetailScreen(place),
             child: Card(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Stack(
                 children: [
-                  Image.asset(
-                    place.imageAsset,
-                    width: double.infinity,
-                    height: 120,
-                    fit: BoxFit.cover,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image.asset(
+                        place.imageAsset,
+                        width: double.infinity,
+                        height: 120,
+                        fit: BoxFit.cover,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              place.name,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Text(place.location),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                  // Icon bintang dan teks rating dipindahkan ke sisi kanan atas
+                  Positioned(
+                    top: 8,
+                    right: 8,
+                    child: Row(
                       children: [
+                        Icon(
+                          Icons.star,
+                          color: Colors.amber,
+                          size: 16,
+                        ),
+                        SizedBox(width: 4),
                         Text(
-                          place.name,
-                          style: const TextStyle(
+                          place.rating.toString(), // Tampilkan rating
+                          style: TextStyle(
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(place.location),
                       ],
                     ),
                   ),

@@ -35,7 +35,8 @@ class Settings extends StatelessWidget {
                   },
                   items: <String>[
                     'English',
-                    'Indonesian'
+                    'Indonesian',
+                    'France',
                   ] // Daftar bahasa yang tersedia
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
