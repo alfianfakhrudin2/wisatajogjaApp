@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/screen/main_screen.dart';
 
@@ -201,29 +202,33 @@ class DetailMobilePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Stack(
-              children: <Widget>[
-                Image.asset(place.imageAsset),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.black.withOpacity(0.5),
-                          child: IconButton(
-                            icon: const Icon(Icons.arrow_back,
-                                color: Colors.white),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
+              children: [
+                Stack(
+                  children: <Widget>[
+                    Image.asset(place.imageAsset),
+                    SafeArea(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            CircleAvatar(
+                              backgroundColor: Colors.black.withOpacity(0.5),
+                              child: IconButton(
+                                icon: const Icon(Icons.arrow_back,
+                                    color: Colors.white),
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                              ),
+                            ),
+                            const FavoriteButton(),
+                          ],
                         ),
-                        const FavoriteButton(),
-                      ],
-                    ),
-                  ),
-                )
+                      ),
+                    )
+                  ],
+                ),
               ],
             ),
             Container(

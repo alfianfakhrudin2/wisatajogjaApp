@@ -20,6 +20,44 @@ class TourismPlace {
     required this.imageUrls,
     required this.rating, // Penambahan rating
   });
+  // Method untuk mengonversi objek TourismPlace menjadi JSON.
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'name': name,
+  //     'location': location,
+  //     'imageAsset': imageAsset,
+  //   };
+  // }
+
+  // Method untuk mengonversi objek TourismPlace menjadi JSON.
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'location': location,
+      'imageAsset': imageAsset,
+      'description': description,
+      'openDays': openDays,
+      'openTime': openTime,
+      'ticketPrice': ticketPrice,
+      'imageUrls': imageUrls,
+      'rating': rating, // Penambahan rating
+    };
+  }
+
+  // Method untuk membuat objek TourismPlace dari JSON.
+  factory TourismPlace.fromJson(Map<String, dynamic> json) {
+    return TourismPlace(
+      name: json['name'],
+      location: json['location'],
+      imageAsset: json['imageAsset'],
+      description: json['description'],
+      openDays: json['openDays'],
+      openTime: json['openTime'],
+      ticketPrice: json['ticketPrice'],
+      imageUrls: List<String>.from(json['imageUrls']),
+      rating: json['rating'], // Penambahan rating
+    );
+  }
 }
 
 var tourismPlaceList = [
