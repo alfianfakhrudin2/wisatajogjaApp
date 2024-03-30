@@ -1,0 +1,14 @@
+{
+  "en": {
+    "recommendedText": "Recommended for You",
+    "bottomNavHome": "Home",
+    "bottomNavFavorites": "Favorites",
+    "bottomNavSettings": "Settings"
+  },
+  "id": {
+    "recommendedText": "Direkomendasikan untuk Anda",
+    "bottomNavHome": "Beranda",
+    "bottomNavFavorites": "Favorit",
+    "bottomNavSettings": "Pengaturan"
+  }
+}

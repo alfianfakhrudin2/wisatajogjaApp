@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -17,6 +18,7 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   late List<TourismPlace> filteredPlaces;
   late TextEditingController _searchController;
+
   bool isSearching = false;
   int _currentSlide = 0;
   int _selectedIndex = 0;
@@ -40,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Hello, Dean'),
+        title: Text('appBarTitle').tr(),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -69,7 +71,7 @@ class _MainScreenState extends State<MainScreen> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  hintText: 'Search...',
+                  hintText: 'searchHint'.tr(),
                   filled: true,
                   fillColor: Theme.of(context).brightness == Brightness.light
                       ? Color.fromARGB(255, 255, 255, 255)
@@ -100,18 +102,18 @@ class _MainScreenState extends State<MainScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
-            label: 'Home',
+            label: 'bottomNavHome'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorites',
+            label: 'bottomNavFavorites'.tr(),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: 'bottomNavSettings'.tr(),
           ),
         ],
         currentIndex: _selectedIndex,
@@ -129,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
-            'Popular Places',
+            'popularPlacesText'.tr(),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -291,7 +293,7 @@ class _MainScreenState extends State<MainScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            'Recommended for You',
+            'recommendedText'.tr(),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -319,11 +321,15 @@ class _MainScreenState extends State<MainScreen> {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset(
-                              place.imageAsset,
-                              width: double.infinity,
-                              height: 120,
-                              fit: BoxFit.cover,
+                            ClipRRect(
+                              borderRadius:
+                                  BorderRadius.circular(8.0), // Rounded corners
+                              child: Image.asset(
+                                place.imageAsset,
+                                width: double.infinity,
+                                height: 120,
+                                fit: BoxFit.cover,
+                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),

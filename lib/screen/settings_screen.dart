@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wisatajogja/provider/themeProv.dart';
+import 'package:wisatajogja/screen/AppLocalizations.dart';
 import 'package:wisatajogja/screen/main_screen.dart';
 
 class Settings extends StatelessWidget {
@@ -10,7 +11,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(AppLocalizations.of(context).translate("settings")),
       ),
       body: Consumer<Themeprov>(
         builder: (context, notifier, child) {

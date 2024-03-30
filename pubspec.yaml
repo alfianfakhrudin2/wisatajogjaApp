@@ -13,6 +13,9 @@ dependencies:
   shared_preferences: ^2.2.2
   flutter_localizations:
     sdk: flutter
+    version: ^0.0.0
+  cupertino_icons: ^1.0.2
+  easy_localization: ^3.0.0
   intl: ^0.18.1
   carousel_slider: ^4.0.0
 
@@ -26,6 +29,8 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/translations/
+
   fonts:
     - family: Staatliches
       fonts:

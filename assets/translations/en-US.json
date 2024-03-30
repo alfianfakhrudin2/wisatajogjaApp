@@ -1,0 +1,14 @@
+{
+  "@@locale": "en",
+  "hello_dean": "Hello, Dean",
+  "search_hint": "Search...",
+  "popular_places": "Popular Places",
+  "recommended_for_you": "Recommended for You",
+  "home": "Home",
+  "favorites": "Favorites",
+  "settings": "Settings",
+  "dark_theme": "Dark Theme",
+  "language": "Language",
+  "location": "Location",
+  "rating": "Rating"
+}

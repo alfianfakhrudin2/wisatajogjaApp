@@ -23,7 +23,7 @@ class Themeprov with ChangeNotifier {
 
   //Custom light theme
   final lightTheme = ThemeData(
-      primaryColor: Colors.white,
+      primaryColor: const Color.fromARGB(255, 228, 228, 228),
       brightness: Brightness.light,
       primaryColorDark: Colors.white);
 
