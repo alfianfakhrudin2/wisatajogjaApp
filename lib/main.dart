@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:wisatajogja/screen/AppLocalizations.dart';
+import 'package:provider/provider.dart';
 import 'package:wisatajogja/screen/detail_screen.dart';
 import 'package:wisatajogja/screen/main_screen.dart';
 import 'package:wisatajogja/model/tourism_place.dart';
@@ -18,14 +18,15 @@ void main() async {
   ]);
   await EasyLocalization.ensureInitialized();
 
-  runApp(
-    EasyLocalization(
-      supportedLocales: [Locale('en', 'US'), Locale('id', 'ID')],
-      path: 'assets/translations', // path to your translation files
-      fallbackLocale: Locale('en', 'US'),
-      child: MainApp(),
-    ),
-  );
+  runApp(EasyLocalization(
+      supportedLocales: const [
+        Locale('en', 'US'),
+        Locale('id', 'ID'),
+        Locale('fr', 'FR')
+      ],
+      path: 'assets/translations',
+      startLocale: const Locale('id'),
+      child: const MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -44,6 +45,8 @@ class MainApp extends StatelessWidget {
           locale: context.locale,
           debugShowCheckedModeBanner: false,
           title: 'Dark Theme',
+          //By default theme setting, you can also set system
+          // when your mobile theme is dark the app also become dark
 
           themeMode: notifier.isDark ? ThemeMode.dark : ThemeMode.light,
 

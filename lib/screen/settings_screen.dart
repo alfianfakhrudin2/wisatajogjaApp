@@ -11,7 +11,7 @@ class Settings extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate("settings")),
+        title: Text(AppLocalizations.of(context)?.translate("settings") ?? ''),
       ),
       body: Consumer<Themeprov>(
         builder: (context, notifier, child) {

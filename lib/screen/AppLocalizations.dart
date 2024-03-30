@@ -14,8 +14,8 @@ class AppLocalizations {
   late Map<String, String> _localizedStrings;
 
   Future<bool> load() async {
-    String jsonString =
-        await rootBundle.loadString('assets/lang/${locale.languageCode}.json');
+    String jsonString = await rootBundle
+        .loadString('assets/translations/${locale.languageCode}.json');
     Map<String, dynamic> jsonMap = json.decode(jsonString);
     _localizedStrings = jsonMap.map((key, value) {
       return MapEntry(key, value.toString());
@@ -27,8 +27,8 @@ class AppLocalizations {
     return _localizedStrings[key] ?? key;
   }
 
-  static AppLocalizations of(BuildContext context) {
-    return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
+  static AppLocalizations? of(BuildContext context) {
+    return Localizations.of<AppLocalizations>(context, AppLocalizations);
   }
 }
 
