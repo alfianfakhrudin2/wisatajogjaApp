@@ -50,25 +50,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Section Ganti Password
-                const Text(
-                  'Ganti Password',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                _buildListItem(
-                  context,
-                  'Reset Password',
-                  icon: Icons.lock,
-                  onPressed: () {
-                    // Implementasi aksi ketika tombol "Change Password" ditekan
-                  },
-                ),
-                const Divider(),
-
                 // Section Menuju Halaman Settings
                 const Text(
                   'Settings',

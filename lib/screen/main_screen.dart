@@ -42,7 +42,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('appBarTitle').tr(),
+        title: Text('Hello, Ryan').tr(),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -105,15 +105,15 @@ class _MainScreenState extends State<MainScreen> {
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home_rounded),
-            label: 'bottomNavHome'.tr(),
+            label: 'Home'.tr(), // Ubah teks menjadi "Home"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'bottomNavFavorites'.tr(),
+            label: 'Favorite'.tr(), // Ubah teks menjadi "Favorite"
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'bottomNavSettings'.tr(),
+            label: 'Settings'.tr(), // Ubah teks menjadi "Settings"
           ),
         ],
         currentIndex: _selectedIndex,
@@ -131,7 +131,7 @@ class _MainScreenState extends State<MainScreen> {
         Padding(
           padding: const EdgeInsets.only(left: 16.0),
           child: Text(
-            'popularPlacesText'.tr(),
+            'popularPlacesText',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
@@ -293,7 +293,7 @@ class _MainScreenState extends State<MainScreen> {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Text(
-            'recommendedText'.tr(),
+            'recommended place',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
