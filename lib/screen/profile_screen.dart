@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: const [
                         Text(
-                          'Aura',
+                          'Dyo',
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

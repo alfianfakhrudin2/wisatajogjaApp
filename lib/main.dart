@@ -9,6 +9,7 @@ import 'package:wisatajogja/model/tourism_place.dart';
 import 'package:wisatajogja/provider/themeProv.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:wisatajogja/screen/splash/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +34,6 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   static const String title = ('name');
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -58,7 +58,7 @@ class MainApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: MainScreen(),
+          home: SplashScreen(),
         );
       }),
     );
